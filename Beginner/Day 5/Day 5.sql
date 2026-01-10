@@ -160,9 +160,6 @@ ON s.student_id = a.student_id;
 
 
 
-
-
-
 /*
 Now we are going to import the ClassicModels database in MySQL Workbench.
 
