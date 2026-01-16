@@ -102,49 +102,14 @@ show tables;
 select * from students;
 select * from student_activities;
 
-/*
-INNER JOIN:
-Returns only the rows that have matching values
-in both tables.
-*/
+-- ==================================================================== 
 
--- Find all students and their activities, but only if they have an activity.
-select s.student_id, s.name, a.activity_name, a.activity_type 
-from students as s inner join student_activities as a
-on s.student_id = a.student_id 
-order by student_id asc;
+-- ==================================================================== 
 
-
--- Find all students, and show their activities if they have any.
-select s.student_id, s.name, a.activity_name, a.activity_type
-from students s
-left join student_activities a
+select s.student_id, s.name, a.activity_name
+from students s 
+inner join student_activities a
 on s.student_id = a.student_id;
-
-
--- Find all activities, and show the student who did them if they exist.
-select s.student_id, s.name, a.activity_name, a.activity_type
-from students s
-right join student_activities a
-on s.student_id = a.student_id;
-
-
-
--- Show all students and all activities, matching if possible.
-SELECT s.student_id, s.name, a.activity_name, a.activity_type
-FROM students s
-LEFT JOIN student_activities a
-ON s.student_id = a.student_id
-
-UNION
-
-SELECT s.student_id, s.name, a.activity_name, a.activity_type
-FROM students s
-RIGHT JOIN student_activities a
-ON s.student_id = a.student_id;
-
-
-
 
 
 
