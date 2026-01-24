@@ -29,11 +29,11 @@ SQL JOINs help you extract related information from different tables using a sha
 
 ## 🔹 Real practice
 You joined the `students` table with `student_activities` to:
-- find students with activities  
-- find students with no activities  
-- find activities with no students  
-- count activities per student  
-- use `HAVING` with JOINs
+- Join students with their activities
+- Find students with no activities
+- Find activities without students
+- Use UNION to simulate FULL OUTER JOIN
+- Use JOIN with GROUP BY and HAVING
 
 ---
 
