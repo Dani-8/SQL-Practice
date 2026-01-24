@@ -228,6 +228,9 @@ where s.student_id is null;
 
 
 
+
+
+
 /*
 Now we are going to import the ClassicModels database in MySQL Workbench.
 
