@@ -213,18 +213,12 @@ select * from student_activities;
 
 -- ------------------------------------------------------------------------
 
+-- INNER JOIN + CLOSURE:
 
--- Why this query: to show students who are active
+
+-- Why this query: find students who participate a lot
 -- Why INNER JOIN: only students with activities included
-select s.student_id, s.name, a.activity_name
-from students s 
-inner join student_activities a
-on s.student_id = a.student_id
-where s.student_id in (
-	select student_id
-	from students
-    group by student_id
-);
+
 
 
 
