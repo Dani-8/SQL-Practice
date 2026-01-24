@@ -206,56 +206,74 @@ on s.student_id = a.student_id
 where s.student_id is null;
 -- ------------------------------------------------------------------------
 
-
-
 select * from students;
 select * from student_activities;
 
 -- ------------------------------------------------------------------------
+
+-- MORE EXAMPLES FOR PRACTICE!!!
+
 
 -- INNER JOIN + CLOSURE:
 
 
 -- Why this query: find students who participate a lot
 -- Why INNER JOIN: only students with activities included
+select s.student_id, s.name, count(a.activity_id) as total_activities
+from students s
+inner join student_activities a 
+on s.student_id = a.student_id
+group by s.student_id, s.name
+having count(a.activity_name) > 1;
+
+-- LEFT JOIN + HAVING:
+
+
+-- Why this query: find students not involved in any activity
+-- Why LEFT JOIN: keep all students
+select s.student_id, s.name, count(a.activity_id) as total_activities
+from students s
+left join student_activities a
+on s.student_id = a.student_id
+group by s.student_id, s.name
+having count(a.activity_id) = 0;
+
+-- RIGHT JOIN + HAVING:
+
+
+-- Why this query: find orphan activities
+-- Why RIGHT JOIN: keep all activities
+select a.activity_id, a.activity_name, count(s.student_id) as total_student
+from students s
+right join student_activities a
+on s.student_id = a.student_id
+group by a.activity_id, a.activity_name
+having count(s.student_id) = 0;
+
+-- UNION + HAVING:
+
+
+-- Why this query: see all students and all activities in one result
+-- Why UNION: combine students w/ activities and activities w/o students
+select s.name, a.activity_name
+from students s
+left join student_activities a
+on s.student_id = a.student_id
+group by s.name, a.activity_name
+
+union
+
+select s.name, a.activity_name
+from students s
+right join student_activities a
+on s.student_id = a.student_id
+group by s.name, a.activity_name;
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-Now we are going to import the ClassicModels database in MySQL Workbench.
-
-Steps:
-1. Download classicmodels.sql as a ZIP from this link:
-   https://gist.github.com/dronavallisaikrishna/aa569525a7dbce32cc2465beb2138a7d?utm_source=chatgpt.com
-   → Save to Downloads and extract the SQL file
-2. Open MySQL Workbench and connect
-3. (Optional) Create a clean database:
-   CREATE DATABASE classicmodels;
-   USE classicmodels;
-4. File → Open SQL Script → Select classicmodels.sql → ⚡ Execute
-5. Refresh Schemas → classicmodels with tables appears
-
-That’s it 👍
-*/
+-- 🎉 End of Day 5:
+-- You learned how to join tables using INNER, LEFT, RIGHT, and UNION.
+-- You also used JOINs with GROUP BY and HAVING to analyze data.
+-- This is a major step toward writing real-world SQL queries.
