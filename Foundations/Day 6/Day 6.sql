@@ -136,9 +136,29 @@ where salary > (
 
 -- =======================================================================
 
+/*
+1. Question:
+Insert all employees whose salary is above the overall average into a new table.
+*/
+
+-- CREATE TABLE
+create table high_salary_emp like employees_subqueries;
+
+-- INSERT VALUES
+insert into high_salary_emp
+select * from employees_subqueries
+where salary > (
+	select avg(salary) from employees_subqueries
+);
+
+-- CHECK THE NEW TABLE
+select * from high_salary_emp;
 
 
-
+/*
+2. Question:
+Update employees’ salary to 10% bonus if their salary is below the city average.
+*/
 
 
 
